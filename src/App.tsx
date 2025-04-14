@@ -35,14 +35,14 @@ const App = () => {
         </button>
       </div>
 
-      <div>
+      <div className="mb-3">
         <label
           htmlFor="currency"
           className="block text-sm/6 font-medium text-gray-900"
         >
           Select a target currency
         </label>
-        <div className="mt-2">
+        <div className="mt-2 border border-gray-300 dark:border-gray-700 rounded shadow-sm">
           <div className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
             <div className="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">
               {getCurrencySymbol(target)}
