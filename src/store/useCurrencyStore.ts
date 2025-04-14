@@ -30,12 +30,12 @@ export const useCurrencyStore = create<CurrencyStore>((set, get) => ({
 
     try {
       const response = await axios.get(
-        `${baseUrl}/live/?access_key=${apiKey}&target=${target}`
+        `${baseUrl}/live?access_key=${apiKey}&target=${target}`
       );
       const data = response.data;
 
-      if (data.error.info) {
-        throw new Error(data.error.info);
+      if (data.error) {
+        throw new Error(data.error?.info);
       }
 
       const rates = Object.entries(data.rates).map(([code, rate]) => ({

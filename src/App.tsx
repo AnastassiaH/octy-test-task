@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useCurrencyStore } from "./store/useCurrencyStore";
-import { popularCurrency } from "./constans";
+import { popularCurrency } from "./constants";
 
 const getCurrencySymbol = (target: string) => {
   return popularCurrency[target] || "∞";
@@ -78,9 +78,9 @@ const App = () => {
                 data-slot="icon"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 />
               </svg>
             </div>
@@ -91,7 +91,7 @@ const App = () => {
       {isLoading && <p className="text-center text-lg">Loading...</p>}
       {error && <p className="text-center text-red-500 my-2">{error}</p>}
 
-      {!isLoading && !error && rates.length && (
+      {!isLoading && !error && rates.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {rates.map((rate) => (
             <div
