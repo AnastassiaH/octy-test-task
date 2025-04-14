@@ -35,7 +35,7 @@ export const useCurrencyStore = create<CurrencyStore>((set, get) => ({
       const data = response.data;
 
       if (data.error) {
-        throw new Error(data.error?.info);
+        throw new Error(data.error?.info || data.error?.type);
       }
 
       const rates = Object.entries(data.rates).map(([code, rate]) => ({
