@@ -8,25 +8,36 @@ interface CurrencyRate {
 
 interface CurrencyStore {
   rates: CurrencyRate[];
-  base: string;
+  target: string;
   isLoading: boolean;
   error: string | null;
+  setTarget: (target: string) => void;
   fetchRates: () => Promise<void>;
 }
 
 const apiKey = import.meta.env.VITE_COINLAYER_API_KEY;
 const baseUrl = import.meta.env.VITE_COINLAYER_BASE_URL;
 
-export const useCurrencyStore = create<CurrencyStore>((set) => ({
+export const useCurrencyStore = create<CurrencyStore>((set, get) => ({
   rates: [],
-  base: "USD",
+  target: "USD",
   isLoading: false,
   error: null,
+  setTarget: (target) => set({ target }),
   fetchRates: async () => {
     set({ isLoading: true, error: null });
+    const { target } = get();
+
     try {
-      const response = await axios.get(`${baseUrl}/?access_key=${apiKey}`);
+      const response = await axios.get(
+        `${baseUrl}/live/?access_key=${apiKey}&target=${target}`
+      );
       const data = response.data;
+
+      if (data.error.info) {
+        throw new Error(data.error.info);
+      }
+
       const rates = Object.entries(data.rates).map(([code, rate]) => ({
         code,
         rate: rate as number,
