@@ -86,7 +86,7 @@ const App = () => {
       <div className="mb-3">
         <label
           htmlFor="currency"
-          className="block text-sm/6 font-medium text-gray-900"
+          className="block text-sm/6 font-medium text-gray-900 dark:text-gray-300"
         >
           Select a target currency
         </label>
