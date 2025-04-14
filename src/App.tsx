@@ -61,7 +61,6 @@ const App = () => {
                 id="currency"
                 name="currency"
                 aria-label="Currency"
-                defaultValue={"USD"}
                 value={target}
                 onChange={(e) => setTarget(e.target.value)}
                 className="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
